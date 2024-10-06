@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Dashboard</h2>
+        <button class="btn btn-danger mb-3" id="logout-btn">Cerrar Sesión</button>
+
+        <!-- Sección de Galería de Proyectos -->
+        <h2>Galería de Proyectos</h2>
+        <a href="create.html?section=galleryItems" class="btn btn-primary mb-3">Agregar Proyecto</a>
+        <div class="row" id="gallery-items"></div>
+
+        <!-- Sección de Experiencias -->
+        <h2>Experiencias</h2>
+        <a href="create.html?section=experiencias" class="btn btn-primary mb-3">Agregar Experiencia</a>
+        <table class="table table-bordered" id="experience-table">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Lugar</th>
+                    <th>Año Inicio</th>
+                    <th>Año Fin</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <!-- Sección de Estudios -->
+        <h2>Estudios</h2>
+        <a href="create.html?section=estudios" class="btn btn-primary mb-3">Agregar Estudio</a>
+        <table class="table table-bordered" id="education-table">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th>Lugar</th>
+                    <th>Año Inicio</th>
+                    <th>Año Fin</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <!-- Modal para confirmación de eliminación -->
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Eliminación</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ¿Estás seguro de que deseas eliminar este elemento?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="confirm-delete-btn">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase and Bootstrap JS -->
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-auth.js";
+        import { getDatabase, ref, onValue, remove } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js";
+
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAa6DWSdE6uD6QF_L8qfCkFNwwWqkuB4AY",
+            authDomain: "mi-portafolio-1c005.firebaseapp.com",
+            databaseURL: "https://mi-portafolio-1c005-default-rtdb.firebaseio.com",
+            projectId: "mi-portafolio-1c005",
+            storageBucket: "mi-portafolio-1c005.appspot.com",
+            messagingSenderId: "675487166976",
+            appId: "1:675487166976:web:fdd54505d6682e76ea9ee5",
+            measurementId: "G-H5FNZ5RWD4",
+          };
+
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const database = getDatabase(app);
+
+        // Variables para almacenar la sección y clave a eliminar
+        let sectionToDelete = '';
+        let keyToDelete = '';
+
+        // Verificar si el usuario está autenticado
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                window.location.href = 'login.html';
+            } else {
+                loadGalleryItems();
+                loadExperiences();
+                loadEducation();
+            }
+        });
+
+        // Cerrar sesión
+        document.getElementById('logout-btn').addEventListener('click', () => {
+            signOut(auth).then(() => {
+                window.location.href = 'login.html';
+            });
+        });
+
+        // Cargar y mostrar datos
+        function loadGalleryItems() {
+            const galleryRef = ref(database, 'galleryItems');
+            onValue(galleryRef, (snapshot) => {
+                const galleryItems = snapshot.val();
+                const galleryContainer = document.getElementById('gallery-items');
+                galleryContainer.innerHTML = '';
+
+                for (let key in galleryItems) {
+                    const item = galleryItems[key];
+                    const col = document.createElement('div');
+                    col.className = 'col-md-4 mb-3';
+                    col.innerHTML = `
+                        <div class="card">
+                            <img src="${item.imageUrl}" class="card-img-top" alt="${item.titulo}">
+                            <div class="card-body">
+                                <h5 class="card-title">${item.titulo}</h5>
+                                <p class="card-text">${item.descripcion}</p>
+                                <a href="edit.html?section=galleryItems&key=${key}" class="btn btn-warning">Editar</a>
+                                <button class="btn btn-danger delete-btn" data-section="galleryItems" data-key="${key}">Eliminar</button>
+                            </div>
+                        </div>`;
+                    galleryContainer.appendChild(col);
+                }
+
+                // Agregar eventos de clic a los botones de eliminar
+                addDeleteEventListeners();
+            });
+        }
+
+        function loadExperiences() {
+            const experienceRef = ref(database, 'experiencias');
+            onValue(experienceRef, (snapshot) => {
+                const experiences = snapshot.val();
+                const tableBody = document.getElementById('experience-table').querySelector('tbody');
+                tableBody.innerHTML = '';
+
+                for (let key in experiences) {
+                    const exp = experiences[key];
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${exp.titulo}</td>
+                        <td>${exp.lugar}</td>
+                        <td>${exp.añoInicio}</td>
+                        <td>${exp.añoFin}</td>
+                        <td>
+                            <a href="edit.html?section=experiencias&key=${key}" class="btn btn-warning">Editar</a>
+                            <button class="btn btn-danger delete-btn" data-section="experiencias" data-key="${key}">Eliminar</button>
+                        </td>`;
+                    tableBody.appendChild(row);
+                }
+
+                // Agregar eventos de clic a los botones de eliminar
+                addDeleteEventListeners();
+            });
+        }
+
+        function loadEducation() {
+            const educationRef = ref(database, 'estudios');
+            onValue(educationRef, (snapshot) => {
+                const studies = snapshot.val();
+                const tableBody = document.getElementById('education-table').querySelector('tbody');
+                tableBody.innerHTML = '';
+
+                for (let key in studies) {
+                    const edu = studies[key];
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${edu.titulo}</td>
+                        <td>${edu.lugar}</td>
+                        <td>${edu.añoInicio}</td>
+                        <td>${edu.añoFin}</td>
+                        <td>
+                            <a href="edit.html?section=estudios&key=${key}" class="btn btn-warning">Editar</a>
+                            <button class="btn btn-danger delete-btn" data-section="estudios" data-key="${key}">Eliminar</button>
+                        </td>`;
+                    tableBody.appendChild(row);
+                }
+
+                // Agregar eventos de clic a los botones de eliminar
+                addDeleteEventListeners();
+            });
+        }
+
+        // Añadir eventos de clic a los botones de eliminar
+        function addDeleteEventListeners() {
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    sectionToDelete = e.target.getAttribute('data-section');
+                    keyToDelete = e.target.getAttribute('data-key');
+                    // Mostrar el modal
+                    $('#confirmDeleteModal').modal('show');
+                });
+            });
+        }
+
+        // Eliminar datos después de confirmar en el modal
+        document.getElementById('confirm-delete-btn').addEventListener('click', () => {
+            if (sectionToDelete && keyToDelete) {
+                const dataRef = ref(database, `${sectionToDelete}/${keyToDelete}`);
+                remove(dataRef)
+                    .then(() => {
+                        alert('Elemento eliminado exitosamente.');
+                        $('#confirmDeleteModal').modal('hide');
+                    })
+                    .catch((error) => {
+                        alert('Error al eliminar el elemento: ' + error.message);
+                        $('#confirmDeleteModal').modal('hide');
+                    });
+            }
+        });
+    </script>
+</body>
+</html>

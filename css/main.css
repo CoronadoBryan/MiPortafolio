@@ -2164,7 +2164,6 @@ p.additional-text a {
 }
 
 form {
-  position: relative;
   width: 100%;
 }
 form input, form textarea {
@@ -2184,7 +2183,6 @@ form input:focus, form textarea:focus {
   border-bottom: 2px solid var(--accent);
 }
 form textarea {
-  height: 16rem;
   resize: none;
 }
 form ::-webkit-input-placeholder {
@@ -2451,9 +2449,51 @@ form textarea:required:valid {
 /* ------------------------------------------------*/
 /* Sections Inner Start */
 /* ------------------------------------------------*/
-
-
-
+.inner {
+  
+}
+.inner.inner-grid-top {
+  padding: 3rem 0 6rem 0;
+}
+@media only screen and (min-width: 768px) {
+  .inner {
+  }
+  .inner.inner-grid-top {
+    padding: 4.5rem 0 7.5rem 0;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .inner {
+  }
+  .inner.inner-first {
+    padding: 11rem 0 4rem 0;
+  }
+  .inner.inner-grid-top {
+    padding: 8rem 0 4rem 0;
+  }
+}
+@media only screen and (min-width: 1400px) {
+  .inner {
+    padding: 15rem 0 2rem 0;
+  }
+  .inner.inner-grid-top {
+    padding: 10rem 0 2rem 0;
+  }
+  .inner.inner-first {
+    padding: 15rem 0 2rem 0;
+  }
+}
+@media only screen and (min-width: 1600px) {
+  .inner {
+    padding: 16rem 0 2rem 0;
+  }
+  .inner.inner-grid-top {
+    padding: 11rem 0 2rem 0;
+  }
+  .inner.inner-first {
+    padding: 16rem 0 2rem 0;
+  }
+}
 
 /* ------------------------------------------------*/
 /* Sections Inner End */

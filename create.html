@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Nuevo Elemento</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Agregar Nuevo Elemento</h2>
+        <form id="create-form">
+            <div class="form-group">
+                <label for="title">Título</label>
+                <input type="text" class="form-control" id="title" required>
+            </div>
+            <div class="form-group" id="additional-fields">
+                <!-- Campos adicionales se agregarán aquí dinámicamente -->
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+            <a href="dashboard.html" class="btn btn-secondary">Cancelar</a>
+        </form>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js"></script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-app.js";
+        import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.14.0/firebase-database.js";
+
+        // Configuración de Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyAa6DWSdE6uD6QF_L8qfCkFNwwWqkuB4AY",
+            authDomain: "mi-portafolio-1c005.firebaseapp.com",
+            databaseURL: "https://mi-portafolio-1c005-default-rtdb.firebaseio.com",
+            projectId: "mi-portafolio-1c005",
+            storageBucket: "mi-portafolio-1c005.appspot.com",
+            messagingSenderId: "675487166976",
+            appId: "1:675487166976:web:fdd54505d6682e76ea9ee5",
+            measurementId: "G-H5FNZ5RWD4",
+          };
+
+        // Inicializar Firebase
+        const app = initializeApp(firebaseConfig);
+        const database = getDatabase(app);
+
+        // Obtener la sección de la URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const section = urlParams.get('section');
+
+        // Mostrar campos adicionales según la sección
+        const additionalFields = document.getElementById('additional-fields');
+
+        if (section === 'experiencias' || section === 'estudios') {
+            additionalFields.innerHTML = `
+                <div class="form-group">
+                    <label for="place">Lugar</label>
+                    <input type="text" class="form-control" id="place" required>
+                </div>
+                <div class="form-group">
+                    <label for="yearStart">Año Inicio</label>
+                    <input type="number" class="form-control" id="yearStart" required>
+                </div>
+                <div class="form-group">
+                    <label for="yearEnd">Año Fin</label>
+                    <input type="number" class="form-control" id="yearEnd" required>
+                </div>
+            `;
+        } else if (section === 'galleryItems' || section === 'herramientas') {
+            additionalFields.innerHTML = `
+                <div class="form-group">
+                    <label for="imageUrl">URL de la Imagen</label>
+                    <input type="text" class="form-control" id="imageUrl" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Descripción</label>
+                    <textarea class="form-control" id="description" rows="3"></textarea>
+                </div>
+            `;
+        }
+
+        // Guardar nuevo elemento en Firebase
+        document.getElementById('create-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const title = document.getElementById('title').value;
+            let newData = { titulo: title };
+
+            if (section === 'experiencias' || section === 'estudios') {
+                newData.lugar = document.getElementById('place').value;
+                newData.añoInicio = document.getElementById('yearStart').value;
+                newData.añoFin = document.getElementById('yearEnd').value;
+            } else if (section === 'galleryItems' || section === 'herramientas') {
+                newData.imageUrl = document.getElementById('imageUrl').value;
+                newData.descripcion = document.getElementById('description').value;
+            }
+
+            const sectionRef = ref(database, section);
+            push(sectionRef, newData).then(() => {
+                window.location.href = 'dashboard.html';
+            });
+        });
+    </script>
+</body>
+</html>
