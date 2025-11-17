@@ -48,10 +48,17 @@ $(function() {
 
   imgLoad.on('done', instance => {
 
-    document.getElementById("loaderContent").classList.add("fade-out");
-    setTimeout(() => {
-      document.getElementById("loader").classList.add("loaded");
-    }, 300);
+    const loaderContent = document.getElementById("loaderContent");
+    const loader = document.getElementById("loader");
+    
+    if (loaderContent) {
+      loaderContent.classList.add("fade-out");
+    }
+    if (loader) {
+      setTimeout(() => {
+        loader.classList.add("loaded");
+      }, 300);
+    }
 
     gsap.set(".animate-headline", {y: 50, opacity: 0});
     ScrollTrigger.batch(".animate-headline", {
@@ -302,30 +309,6 @@ $(function() {
   // Swiper Slider Start
   // --------------------------------------------- //
 
-  // --------------------------------------------- //
-  // Contact Form Start
-  // --------------------------------------------- //
-  $("#contact-form").submit(function() { //Change
-		var th = $(this);
-		$.ajax({
-			type: "POST",
-			url: "mail.php", //Change
-			data: th.serialize()
-		}).done(function() {
-      $('.contact').find('.form').addClass('is-hidden');
-      $('.contact').find('.form__reply').addClass('is-visible');
-			setTimeout(function() {
-				// Done Functions
-        $('.contact').find('.form__reply').removeClass('is-visible');
-        $('.contact').find('.form').delay(300).removeClass('is-hidden');
-				th.trigger("reset");
-			}, 5000);
-		});
-		return false;
-	});
-  // --------------------------------------------- //
-  // Contact Form End
-  // --------------------------------------------- //
 
   // --------------------------------------------- //
   // Modernizr SVG Fallback Start

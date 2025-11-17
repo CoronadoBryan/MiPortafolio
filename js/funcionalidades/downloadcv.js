@@ -1,5 +1,5 @@
-let ruta = "../../Documents/cv.pdf"
-let nombre = "cv bryan coronado santi"
+let ruta = "./documents/cv.pdf"
+let nombre = "cv-bryan-coronado-santi.pdf"
 
 
 function Descargar_boton (ruta,nombre){

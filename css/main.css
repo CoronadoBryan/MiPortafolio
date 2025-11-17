@@ -2296,7 +2296,7 @@ form textarea:required:valid {
 @media only screen and (min-width: 992px) {
   .main {
     height: -moz-calc(100vh - 2rem);
-    height: calc(100vh - 2rem);
+    height: calc(60vh - 2rem);
     padding: 0;
   }
 }
@@ -3880,53 +3880,179 @@ form textarea:required:valid {
 
 .tools-cards__item {
   width: 50%;
+  padding: 0.5rem;
+  box-sizing: border-box;
 }
 @media only screen and (min-width: 768px) {
   .tools-cards__item {
     width: 33.33333334%;
+    padding: 0.75rem;
   }
 }
 @media only screen and (min-width: 1200px) {
   .tools-cards__item {
     width: 20%;
+    padding: 1rem;
   }
+}
+
+#contenedor_skills {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -0.5rem;
+}
+@media only screen and (min-width: 768px) {
+  #contenedor_skills {
+    margin: 0 -0.75rem;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  #contenedor_skills {
+    margin: 0 -1rem;
+  }
+}
+
+/* Estilos para navegador de pestañas de skills */
+.skills-tabs {
+  width: 100%;
+}
+
+.skills-tabs__nav {
+  margin-bottom: 3rem;
+  gap: 1rem;
+  border-bottom: 2px solid var(--stroke-elements);
+  padding-bottom: 1rem;
+}
+
+.skills-tabs__button {
+  padding: 0.8rem 2rem;
+  background-color: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: var(--t-medium);
+  font-size: 1.4rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: -1rem;
+  position: relative;
+}
+
+.skills-tabs__button:hover {
+  color: var(--t-bright);
+}
+
+.skills-tabs__button.active {
+  color: var(--t-bright);
+  border-bottom-color: var(--accent, #007bff);
+  font-weight: 700;
+}
+
+.skills-tabs__content {
+  position: relative;
+  min-height: 300px;
+}
+
+.skills-tabs__panel {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.skills-tabs__panel.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.skills-category__items {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Estilos para botón "Cargar más" del portafolio */
+#btn-cargar-mas {
+  padding: 1rem 2.5rem;
+  background-color: var(--accent, #007bff);
+  color: var(--base, #ffffff);
+  border: none;
+  border-radius: var(--_radius-xl, 0.5rem);
+  font-size: 1.4rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 2rem;
+}
+
+#btn-cargar-mas:hover {
+  background-color: var(--t-bright, #0056b3);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+#btn-cargar-mas:active {
+  transform: translateY(0);
 }
 
 .tools-cards__card {
   position: relative;
   width: 100%;
-  padding: 3rem;
+  height: 100%;
+  padding: 2rem 1.5rem;
   background-color: var(--base);
   border: 1px solid var(--stroke-elements);
   -moz-border-radius: var(--_radius-xl);
        border-radius: var(--_radius-xl);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  max-height: 160px;
 }
 
 .tools-cards__icon {
-  width: auto;
+  width: 60px;
   height: 60px;
-  margin: 0 auto;
+  margin: 0 auto 1rem;
+  object-fit: contain;
+  display: block;
 }
 @media only screen and (min-width: 768px) {
   .tools-cards__icon {
-    height: 90px;
+    width: 70px;
+    height: 70px;
+    margin-bottom: 1.2rem;
   }
 }
 @media only screen and (min-width: 1200px) {
   .tools-cards__icon {
-    height: 6rem;
+    width: 5rem;
+    height: 5rem;
+    margin-bottom: 1.3rem;
   }
 }
 @media only screen and (min-width: 1600px) {
   .tools-cards__icon {
-    height: 7rem;
+    width: 5.5rem;
+    height: 5.5rem;
+    margin-bottom: 1.3rem;
   }
 }
 
 .tools-cards__caption {
-  line-height: 1;
-  margin-top: 1.5rem;
+  line-height: 1.2;
+  margin-top: 0;
+  font-size: 1.4rem;
 }
 
 .tools-card {
