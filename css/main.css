@@ -75,20 +75,20 @@
   --_animspeed-slow: 0.6s;
   --_animbezier: cubic-bezier(0.23, 0.65, 0.74, 1.09);
   /* light color scheme */
-  --base--light: #e6ebf4;
-  --base-tint--light: #ebf0f7;
-  --base-shade--light: #bdc1c8;
-  --accent--light: #aa70e0;
-  --secondary--light: #7059e2;
-  --secondary-rgba--light: rgba(112,89,226,0.3);
-  --stroke-controls--light: #a8b0c1;
-  --stroke-controls-neutral--light: rgba(0,0,0,0.3);
-  --stroke-elements--light: #d1d5e0;
+  --base--light: #e1cfc1;
+  --base-tint--light: #f1bb90;
+  --base-shade--light: #e69b5e;
+  --accent--light: #d3741b;
+  --secondary--light: #ff8c00;
+  --secondary-rgba--light: rgba(223, 222, 232, 0.3);
+  --stroke-controls--light: #ffffff;
+  --stroke-controls-neutral--light: rgba(255, 255, 255, 0.3);
+  --stroke-elements--light: #989393;
   --t-bright--light: #22232c;
   --t-medium--light: #424550;
   --t-muted--light: #666a79;
-  --t-accent--light: #8f56cc;
-  --t-secondary--light: #5d4ec4;
+  --t-accent--light: #d3741b;
+  --t-secondary--light: #ff8c00;
   --t-disabled--light: #717586;
   --t-placeholder--light: #969bb2;
   --base-opp--light: #111111;
@@ -102,8 +102,8 @@
   --base--dark: #111111;
   --base-tint--dark: #161616;
   --base-shade--dark: #000000;
-  --accent--dark: #E4B8BF;
-  --secondary--dark: #CEC4EF;
+  --accent--dark: #d3741b;
+  --secondary--dark: #e0b47f;
   --secondary-rgba--dark: rgba(206,196,239,0.2);
   --stroke-controls--dark: #4B4B51;
   --stroke-controls-neutral--dark: rgba(255,255,255,0.3);
@@ -111,17 +111,17 @@
   --t-bright--dark: #e9e9f1;
   --t-medium--dark: #C7C6D3;
   --t-muted--dark: #A1A1AF;
-  --t-accent--dark: #E1BAC5;
-  --t-secondary--dark: #CEC4EF;
+  --t-accent--dark: #d3741b;
+  --t-secondary--dark: #e0b47f;
   --t-disabled--dark: #8B8A91;
   --t-placeholder--dark: #58585E;
   --base-opp--dark: #fafafa;
   --t-opp-bright--dark: #121319;
   --t-opp-medium--dark: #626577;
   --t-opp-muted--dark: #717586;
-  --gradient-one--dark: #a287d5;
-  --gradient-two--dark: #E4B8BF;
-  --gradient-three--dark: #8b6bc5;
+  --gradient-one--dark: #ee7506;
+  --gradient-two--dark: #ee7506;
+  --gradient-three--dark: #ee7506;
   /* permanent colors */
   --per-base: #111111;
   --per-base-tint: #212121;
@@ -1028,6 +1028,22 @@ p.additional-text a {
 .text-link {
   color: inherit;
   color: var(--t-medium);
+  text-decoration: none;
+  background: -webkit-gradient(linear, left top, right top, from(var(--stroke-controls)), to(var(--stroke-controls))), -webkit-gradient(linear, left top, right top, from(var(--accent)), to(var(--secondary)));
+  background: -moz-linear-gradient(left, var(--stroke-controls), var(--stroke-controls)), -moz-linear-gradient(left, var(--accent), var(--secondary));
+  background: linear-gradient(to right, var(--stroke-controls), var(--stroke-controls)), linear-gradient(to right, var(--accent), var(--secondary));
+  -moz-background-size: 100% 1px, 0 1px;
+       background-size: 100% 1px, 0 1px;
+  background-position: 100% 100%, 0 100%;
+  background-repeat: no-repeat;
+  -webkit-transition: background-size 400ms, color 300ms;
+  -moz-transition: background-size 400ms, color 300ms, -moz-background-size 400ms;
+  transition: background-size 400ms, color 300ms;
+  transition: background-size 400ms, color 300ms, -moz-background-size 400ms;
+}
+.text-link-enlace {
+  color: inherit;
+  color: rgba(248, 116, 0, 0.808);
   text-decoration: none;
   background: -webkit-gradient(linear, left top, right top, from(var(--stroke-controls)), to(var(--stroke-controls))), -webkit-gradient(linear, left top, right top, from(var(--accent)), to(var(--secondary)));
   background: -moz-linear-gradient(left, var(--stroke-controls), var(--stroke-controls)), -moz-linear-gradient(left, var(--accent), var(--secondary));
@@ -2287,7 +2303,7 @@ form textarea:required:valid {
 @media only screen and (min-width: 1400px) {
   .main {
     height: -moz-calc(100vh - 8rem);
-    height: calc(100vh - 8rem);
+    height: calc(80vh - 8rem);
   }
 }
 
@@ -2452,13 +2468,14 @@ form textarea:required:valid {
 /* Sections Inner Start */
 /* ------------------------------------------------*/
 .inner {
-  
+  padding: 6rem 0;
 }
 .inner.inner-grid-top {
   padding: 3rem 0 6rem 0;
 }
 @media only screen and (min-width: 768px) {
   .inner {
+    padding: 7.5rem 0;
   }
   .inner.inner-grid-top {
     padding: 4.5rem 0 7.5rem 0;
@@ -2466,6 +2483,7 @@ form textarea:required:valid {
 }
 @media only screen and (min-width: 992px) {
   .inner {
+    padding: 11rem 0 4rem 0;
   }
   .inner.inner-first {
     padding: 11rem 0 4rem 0;
@@ -2972,7 +2990,6 @@ form textarea:required:valid {
 .avatar__container {
   position: relative;
   width: 100%;
-  height: 100%;
   padding: 3rem;
 }
 .avatar__container::before {

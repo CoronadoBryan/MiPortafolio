@@ -1,0 +1,99 @@
+{
+    "educacion": [
+        {
+            "tiempo": "2021 - 2024",
+            "carrera": "Ingeniería de Software con IA",
+            "institucion": "SENATI",
+            "descripcion": "Actualmente estoy cursando mis estudios en este centro educativo"
+        }
+    ],
+    "experiencia":[
+        {
+            "meses": "Dic - Abril",
+            "año": "2024 ",
+            "cargo": "Desarrollador Full Stack",
+            "empresa": "MumaaGruop International",
+            "link": "",
+            "descripcion": "Encargado de desarrollar un sistema de control de asistencia para los trabajadores de la empresa, utilizando React js y Laravel, aplicando buenas practicas y optimizando el rendimiento del sistema."
+        },
+        {
+            "meses": "Oct - Diciembre",
+            "año": "2024 ",
+            "cargo": "Desarrollador Frond End",
+            "empresa": "NeonHouseLed Sac",
+            "link": "",
+            "descripcion": "Encargado de agregar nueva funcionalidades con php puro , mejorando la experiencia del usuario y optimizando el codigo aplicando buenas practicas."
+        },
+        {
+            "meses": "Mayo - Set",
+            "año": "2024 ",
+            "cargo": "Desarrollador Full Stack",
+            "empresa": "Group Wasichay",
+            "link": "",
+            "descripcion": "Especializado en desarrollo web para la empresa donde muestra los servicios topográficos que realiza, así mismo un sistema de control de asistencia para los trabajadores."
+        },
+        {
+            "meses": "Ene - Abr",
+            "año": "2024 ",
+            "cargo": "Desarrollador Front End",
+            "empresa": "Buho Digital",
+            "link": "",
+            "descripcion": "Soy responsable del desarrollo full stack y de la elaboración de documentación en Docusarus , detallada para garantizar la comprensión y mantenimiento de nuestros sistemas."
+        },
+        {
+            "meses": "Jul - Dic",
+            "año": "2023 ",
+            "cargo": "Desarrollador Full Stack",
+            "empresa": "Buho Digital",
+            "link": "",
+            "descripcion": "Responsable de agregar nuevas funcionalidades a un sistema de salud hecho con React js y Laravel , abarcando area tanto como el front end y el back end , obtimizando la pagina aplicando buenas practicas."
+        }
+    ],
+    "skills":[
+        {
+            "skill": "HTML"
+        },
+        {
+            "skill": "CSS"
+        },
+        {
+            "skill": "JavaScript"
+        },
+        {
+            "skill": "PHP"
+        },
+        {
+            "skill": "Laravel"
+        },
+        {
+            "skill": "React"
+        },
+        {
+            "skill": "React Native"
+        },
+        {
+            "skill": "Next.js"
+        },
+        {
+            "skill": "MySQL"
+        },
+        {
+            "skill": "Git"
+        },
+        {
+            "skill": "Node.js"
+        },
+        {
+            "skill": "TypeScript"
+        },
+        {
+            "skill": "Sass"
+        },
+        {
+            "skill": "Bootstrap"
+        },
+        {
+            "skill": "Figma"
+        }
+    ]
+}
