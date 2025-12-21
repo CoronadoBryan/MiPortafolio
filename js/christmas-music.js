@@ -13,7 +13,7 @@
   
   // Opciones de música navideña gratuita en línea:
   // Opción 1: Jingle Bells
-  const musicUrl = 'https://bryancito.space/documents/navidad.mp3';
+  const musicUrl = 'https://bryancito.space/documents/navidad.mpeg';
   
   // Opción 2 (descomenta para usar): We Wish You a Merry Christmas
   // const musicUrl = 'https://archive.org/download/WeWishYouAMerryChristmas_201812/We%20Wish%20You%20a%20Merry%20Christmas.mp3';
