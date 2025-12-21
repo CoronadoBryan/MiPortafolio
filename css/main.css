@@ -4466,40 +4466,123 @@ form textarea:required:valid {
 /* ------------------------------------------------*/
 
 /* ------------------------------------------------*/
-/* Botón de Música Navideña Start */
+/* Botón de Música Flotante Start */
 /* ------------------------------------------------*/
-.music-toggle {
-  width: 4.4rem;
-  height: 4.4rem;
-  font-size: 1.6rem;
-  white-space: nowrap;
+.music-float-btn {
+  position: fixed;
+  right: 30px;
+  bottom: 80px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #c41e3a 0%, #ff4757 50%, #dc3545 100%);
+  box-shadow: 
+    0 8px 25px rgba(196, 30, 58, 0.4),
+    0 0 0 0 rgba(196, 30, 58, 0.7),
+    inset 0 2px 10px rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.3s ease;
+  animation: floatCircle 3s ease-in-out infinite;
 }
 
-.music-toggle:hover {
+.music-float-btn:hover {
   transform: scale(1.1);
+  box-shadow: 
+    0 12px 35px rgba(196, 30, 58, 0.5),
+    0 0 0 10px rgba(196, 30, 58, 0.1),
+    inset 0 2px 10px rgba(255, 255, 255, 0.4);
 }
 
-.music-toggle.music-playing {
-  color: var(--accent);
-  animation: pulse 2s ease-in-out infinite;
+.music-float-btn .music-icon {
+  font-size: 2.5rem;
+  color: #ffffff;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
 }
 
-@keyframes pulse {
+.music-float-btn:hover .music-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.music-float-btn.music-playing {
+  animation: floatCircle 2s ease-in-out infinite, pulseGlow 1.5s ease-in-out infinite;
+  box-shadow: 
+    0 8px 25px rgba(255, 71, 87, 0.6),
+    0 0 0 0 rgba(255, 71, 87, 0.7),
+    0 0 30px rgba(255, 71, 87, 0.5),
+    inset 0 2px 10px rgba(255, 255, 255, 0.3);
+}
+
+.music-float-btn.music-playing .music-icon {
+  animation: musicBounce 0.8s ease-in-out infinite;
+}
+
+@keyframes floatCircle {
   0%, 100% {
-    opacity: 1;
+    transform: translateY(0);
   }
   50% {
-    opacity: 0.7;
+    transform: translateY(-15px);
   }
 }
 
-@media only screen and (min-width: 992px) {
-  .music-toggle {
-    width: auto;
-    padding: 0 1.5rem;
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 
+      0 8px 25px rgba(255, 71, 87, 0.6),
+      0 0 0 0 rgba(255, 71, 87, 0.7),
+      0 0 30px rgba(255, 71, 87, 0.5),
+      inset 0 2px 10px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 
+      0 8px 25px rgba(255, 71, 87, 0.8),
+      0 0 0 15px rgba(255, 71, 87, 0),
+      0 0 50px rgba(255, 71, 87, 0.7),
+      inset 0 2px 10px rgba(255, 255, 255, 0.4);
+  }
+}
+
+@keyframes musicBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Responsive */
+@media only screen and (max-width: 768px) {
+  .music-float-btn {
+    right: 20px;
+    bottom: 70px;
+    width: 60px;
+    height: 60px;
+  }
+  
+  .music-float-btn .music-icon {
+    font-size: 2rem;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .music-float-btn {
+    right: 15px;
+    bottom: 60px;
+    width: 55px;
+    height: 55px;
+  }
+  
+  .music-float-btn .music-icon {
+    font-size: 1.8rem;
   }
 }
 /* ------------------------------------------------*/
-/* Botón de Música Navideña End */
+/* Botón de Música Flotante End */
 /* ------------------------------------------------*/

@@ -5,7 +5,6 @@
   'use strict';
 
   const musicButton = document.getElementById('music-toggle');
-  const musicCaption = musicButton?.querySelector('.music-caption');
   const musicIcon = musicButton?.querySelector('.music-icon');
   
   // URL de música navideña - Puedes cambiar esta URL por tu propia música
@@ -52,13 +51,11 @@
     if (musicButton) {
       if (playing) {
         musicButton.classList.add('music-playing');
-        if (musicCaption) musicCaption.textContent = 'Pausar';
         if (musicIcon) {
-          musicIcon.style.opacity = '0.7';
+          musicIcon.style.opacity = '1';
         }
       } else {
         musicButton.classList.remove('music-playing');
-        if (musicCaption) musicCaption.textContent = 'Música';
         if (musicIcon) {
           musicIcon.style.opacity = '1';
         }
