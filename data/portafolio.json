@@ -43,5 +43,14 @@
         "link":"https://miaubox.vercel.app/",
         "dataSize":"1400x1400",
         "descripcion":"Sistema para gestionar licencias , pagos  ganancias para usuarios con suscripciones en miaubox"
+    },
+    {
+        "imagenGrande":"./img/portafolio/grande/cacao-grande.png",
+        "imagenPequena":"./img/portafolio/cacao.png",
+        "alt":"imagen de la pagina de jccocoa",
+        "tecnologias": ["HTML","CSS","JS"],
+        "link":"https://jccocoa.com/",
+        "dataSize":"1400x1400",
+        "descripcion":"Pagina web para la empresa JCCocoa , donde se muestra los productos y servicios que ofrece"
     }
 ]

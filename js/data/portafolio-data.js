@@ -53,6 +53,15 @@ const portafolioData = [
         "link": "https://catwise.netlify.app/",
         "dataSize": "1400x1400",
         "descripcion": "Red Social mobile, que sirve para descargar recursos digitales de forma gratuita , recursos de freepick y envato , asi mismo recursos en la nube como one drive y google drive"
+    },
+    {
+        "imagenGrande":"./img/portafolio/grande/cacao-grande.png",
+        "imagenPequena":"./img/portafolio/cacao.png",
+        "alt":"imagen de la pagina de jccocoa",
+        "tecnologias": ["HTML","CSS","JS"],
+        "link":"https://jccocoa.com/",
+        "dataSize":"1400x1400",
+        "descripcion":"Pagina web para la empresa JCCocoa , donde se muestra los productos y servicios que ofrece"
     }
 ];
 

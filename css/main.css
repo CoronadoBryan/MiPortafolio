@@ -2296,14 +2296,14 @@ form textarea:required:valid {
 @media only screen and (min-width: 992px) {
   .main {
     height: -moz-calc(100vh - 2rem);
-    height: calc(60vh - 2rem);
+    height: calc(100vh - 2rem);
     padding: 0;
   }
 }
 @media only screen and (min-width: 1400px) {
   .main {
     height: -moz-calc(100vh - 8rem);
-    height: calc(80vh - 8rem);
+    height: calc(90vh - 8rem);
   }
 }
 

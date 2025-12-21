@@ -1,4 +1,4 @@
-let ruta = "./documents/cv.pdf"
+let ruta = "https://bryancito.space/documents/cv.pdf"
 let nombre = "cv-bryan-coronado-santi.pdf"
 
 
