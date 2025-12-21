@@ -78,8 +78,8 @@
   --base--light: #e1cfc1;
   --base-tint--light: #f1bb90;
   --base-shade--light: #e69b5e;
-  --accent--light: #d3741b;
-  --secondary--light: #ff8c00;
+  --accent--light: #c41e3a;
+  --secondary--light: #dc3545;
   --secondary-rgba--light: rgba(223, 222, 232, 0.3);
   --stroke-controls--light: #ffffff;
   --stroke-controls-neutral--light: rgba(255, 255, 255, 0.3);
@@ -87,8 +87,8 @@
   --t-bright--light: #22232c;
   --t-medium--light: #424550;
   --t-muted--light: #666a79;
-  --t-accent--light: #d3741b;
-  --t-secondary--light: #ff8c00;
+  --t-accent--light: #c41e3a;
+  --t-secondary--light: #dc3545;
   --t-disabled--light: #717586;
   --t-placeholder--light: #969bb2;
   --base-opp--light: #111111;
@@ -102,8 +102,8 @@
   --base--dark: #111111;
   --base-tint--dark: #161616;
   --base-shade--dark: #000000;
-  --accent--dark: #d3741b;
-  --secondary--dark: #e0b47f;
+  --accent--dark: #ff4757;
+  --secondary--dark: #ff6b7a;
   --secondary-rgba--dark: rgba(206,196,239,0.2);
   --stroke-controls--dark: #4B4B51;
   --stroke-controls-neutral--dark: rgba(255,255,255,0.3);
@@ -111,8 +111,8 @@
   --t-bright--dark: #e9e9f1;
   --t-medium--dark: #C7C6D3;
   --t-muted--dark: #A1A1AF;
-  --t-accent--dark: #d3741b;
-  --t-secondary--dark: #e0b47f;
+  --t-accent--dark: #ff4757;
+  --t-secondary--dark: #ff6b7a;
   --t-disabled--dark: #8B8A91;
   --t-placeholder--dark: #58585E;
   --base-opp--dark: #fafafa;
@@ -4418,4 +4418,88 @@ form textarea:required:valid {
 
 /* ------------------------------------------------*/
 /* Features Socials End */
+/* ------------------------------------------------*/
+
+/* ------------------------------------------------*/
+/* Efecto de Nieve Navideña Start */
+/* ------------------------------------------------*/
+.snow-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.snowflake {
+  position: absolute;
+  color: #ffffff;
+  font-size: 1em;
+  font-family: Arial, sans-serif;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5);
+  animation: snowfall linear infinite;
+  opacity: 0.9;
+  will-change: transform, opacity;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(-100px) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(calc(100vh + 100px)) translateX(var(--snow-drift, 0px)) rotate(360deg);
+    opacity: 0;
+  }
+}
+/* ------------------------------------------------*/
+/* Efecto de Nieve Navideña End */
+/* ------------------------------------------------*/
+
+/* ------------------------------------------------*/
+/* Botón de Música Navideña Start */
+/* ------------------------------------------------*/
+.music-toggle {
+  width: 4.4rem;
+  height: 4.4rem;
+  font-size: 1.6rem;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.music-toggle:hover {
+  transform: scale(1.1);
+}
+
+.music-toggle.music-playing {
+  color: var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .music-toggle {
+    width: auto;
+    padding: 0 1.5rem;
+  }
+}
+/* ------------------------------------------------*/
+/* Botón de Música Navideña End */
 /* ------------------------------------------------*/
