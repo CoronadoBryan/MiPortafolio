@@ -4473,7 +4473,7 @@ form textarea:required:valid {
   right: 30px;
   bottom: 80px;
 
-  
+
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -4487,6 +4487,7 @@ form textarea:required:valid {
   z-index: 999;
   display: flex;
   align-items: center;
+  
   justify-content: center;
   transition: all 0.3s ease;
   animation: floatCircle 3s ease-in-out infinite;
